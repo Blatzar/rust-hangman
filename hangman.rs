@@ -1,30 +1,29 @@
 use std::io;
 
 fn main() {
-	println
-	!("Enter word for hangman: ");
-	let word = input();
-	let mut guessed = Vec::<String>::new();
-	guessed.push(" ".to_string());
-	clear();
-	let mut lives = 10;
-	print_letters(&guessed, &word);
-	println!("Enter a letter");
-	while lives > 0 {
-		if lives <= 3 {
-			println!("Lives left: {}", lives);
-		}
-		let guess = input();
-		if !word.contains(&guess.to_string()) {
-			lives -= 1;
-		}
-		guessed.push(guess);
-		if print_letters(&guessed, &word) {
-			println!("Completed!");
-			break;
-		}
-	}
-	println!("The word was \"{}\"",&word)
+    println!("Enter word for hangman: ");
+    let word = input();
+    let mut guessed = Vec::<String>::new();
+    guessed.push(" ".to_string());
+    clear();
+    let mut lives = 10;
+    print_letters(&guessed, &word);
+    println!("Enter a letter");
+    while lives > 0 {
+        if lives <= 3 {
+            println!("Lives left: {}", lives);
+        }
+        let guess = input();
+        if !word.contains(&guess.to_string()) {
+            lives -= 1;
+        }
+        guessed.push(guess);
+        if print_letters(&guessed, &word) {
+            println!("Completed!");
+            break;
+        }
+    }
+    println!("The word was \"{}\"",&word)
 }
 
 fn input() -> std::string::String {
@@ -34,8 +33,8 @@ fn input() -> std::string::String {
 }
 
 fn print_letters(guessed: &Vec<String>, word: &String) -> bool {
-	//println!("correct {:?}", word.contains(last));
-	let mut completed = true;
+    //println!("correct {:?}", word.contains(last));
+    let mut completed = true;
     for i in word.chars() {
         let mut out = "";
         for j in guessed {
@@ -43,9 +42,9 @@ fn print_letters(guessed: &Vec<String>, word: &String) -> bool {
                 out = j;
             }
 
-	        if out == "" {
-	            out = "_";
-	        }
+            if out == "" {
+                out = "_";
+            }
         }
     if out == "_" {completed = false;}
     print!("{} ", out);
